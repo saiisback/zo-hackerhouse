@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { HyperText } from "@/components/ui/hyper-text";
-import { HorizontalScroll } from "@/components/horizontal-scroll";
+import { MissionHouses } from "@/components/mission-houses";
 
 export default function Home() {
   return (
@@ -219,11 +219,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="section-padding bg-surface-container-lowest overflow-hidden">
-        <div className="max-w-4xl mx-auto px-8 text-center">
+      {/* Mission + Houses Section */}
+      <section className="relative bg-surface-container-lowest">
+        {/* Mobile: stacked layout */}
+        <div className="md:hidden section-padding px-8">
           <BlurFade inView delay={0.1} direction="up">
-          <div className="w-64 h-64 md:w-96 md:h-96 mx-auto mb-20 rounded-full overflow-hidden border border-white/10 bg-white flex items-center justify-center">
+          <div className="w-64 h-64 mx-auto mb-12 rounded-full overflow-hidden border border-white/10 bg-white flex items-center justify-center">
             <Image
               src="/zo-logo.jpg"
               className="w-3/4 h-3/4 object-contain"
@@ -234,8 +235,8 @@ export default function Home() {
           </div>
           </BlurFade>
           <BlurFade inView delay={0.25} direction="up">
-          <div className="word-reveal text-3xl md:text-5xl font-medium leading-[1.3] text-left">
-            <p className="mb-8">
+          <div className="word-reveal text-3xl font-medium leading-[1.3] text-left mb-12">
+            <p>
               <span className="opacity-100 text-white">India&apos;s permanent </span>
               <span className="opacity-100 text-white font-[family-name:var(--font-headline)] italic">
                 founder house
@@ -251,54 +252,53 @@ export default function Home() {
             </p>
           </div>
           </BlurFade>
+          <div className="flex flex-col gap-6">
+            <div className="relative w-full h-[60vh] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer">
+              <Image
+                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
+                alt="Whitefield House"
+                fill
+                sizes="85vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 01</span>
+                <h3 className="text-3xl font-bold tracking-tight mt-2 mb-3">Whitefield</h3>
+                <p className="text-white/60 text-base font-light leading-relaxed">
+                  3-storey villa. Pool. Studio. 20 beds.{" "}
+                  <span className="text-white font-[family-name:var(--font-headline)] italic">The compound.</span>
+                </p>
+              </div>
+            </div>
+            <div className="relative w-full h-[60vh] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer">
+              <Image
+                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80"
+                alt="Koramangala House"
+                fill
+                sizes="85vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 02</span>
+                <h3 className="text-3xl font-bold tracking-tight mt-2 mb-3">Koramangala</h3>
+                <p className="text-white/60 text-base font-light leading-relaxed">
+                  13th-floor penthouse. City views. 14 beds.{" "}
+                  <span className="text-white font-[family-name:var(--font-headline)] italic">The stage.</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
+        {/* Desktop: mission left sticky + houses scroll right */}
+        <div className="hidden md:block">
+          <MissionHouses />
+        </div>
       </section>
-
-      {/* Houses Horizontal Scroll */}
-      <HorizontalScroll>
-        {/* Whitefield */}
-        <div className="relative w-[85vw] md:w-[60vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
-          <Image
-            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
-            alt="Whitefield House"
-            fill
-            sizes="(max-width: 768px) 85vw, 60vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
-            unoptimized
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
-            <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 01</span>
-            <h3 className="text-3xl md:text-5xl font-bold tracking-tight mt-2 mb-3">Whitefield</h3>
-            <p className="text-white/60 text-base md:text-lg font-light leading-relaxed">
-              3-storey villa. Pool. Studio. 20 beds.{" "}
-              <span className="text-white font-[family-name:var(--font-headline)] italic">The compound.</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Koramangala */}
-        <div className="relative w-[85vw] md:w-[60vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
-          <Image
-            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80"
-            alt="Koramangala House"
-            fill
-            sizes="(max-width: 768px) 85vw, 60vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
-            unoptimized
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
-            <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 02</span>
-            <h3 className="text-3xl md:text-5xl font-bold tracking-tight mt-2 mb-3">Koramangala</h3>
-            <p className="text-white/60 text-base md:text-lg font-light leading-relaxed">
-              13th-floor penthouse. City views. 14 beds.{" "}
-              <span className="text-white font-[family-name:var(--font-headline)] italic">The stage.</span>
-            </p>
-          </div>
-        </div>
-      </HorizontalScroll>
 
       {/* Solution Section */}
       <section className="section-padding px-8 md:px-28">
@@ -388,28 +388,25 @@ export default function Home() {
       {/* CTA Section */}
       <section className="relative min-h-[716px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video autoPlay className="w-full h-full object-cover opacity-50" loop muted playsInline>
-            <source
-              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260325_120549_0cd82c36-56b3-4dd9-b190-069cfc3a623f.mp4"
-              type="video/mp4"
-            />
-          </video>
+          <Image
+            src="/hero.png"
+            alt="Background"
+            fill
+            className="object-cover opacity-50"
+            sizes="100vw"
+          />
           <div className="absolute inset-0 bg-background/60 backdrop-blur-sm"></div>
         </div>
-        <div className="relative z-10 text-center px-6">
+        <div className="relative z-10 text-center px-6 max-w-3xl">
           <BlurFade inView delay={0.1} direction="up">
-          <div className="relative w-12 h-12 mx-auto mb-10 flex items-center justify-center">
-            <div className="absolute inset-0 border-2 border-white/40 rounded-full"></div>
-            <div className="border border-white/60 rounded-full w-4 h-4"></div>
-          </div>
-          <h2 className="text-5xl md:text-7xl font-medium tracking-tight mb-12">
+          <h2 className="text-5xl md:text-7xl font-medium tracking-tight mb-6">
             <HyperText
               as="span"
               className="font-medium tracking-tight"
               startOnView
               duration={800}
             >
-              {"Start Your "}
+              {"The "}
             </HyperText>
             <HyperText
               as="span"
@@ -418,19 +415,36 @@ export default function Home() {
               duration={800}
               delay={300}
             >
-              Journey
+              Civilisation
+            </HyperText>
+            <HyperText
+              as="span"
+              className="font-medium tracking-tight"
+              startOnView
+              duration={800}
+              delay={500}
+            >
+              {" Is Waiting"}
             </HyperText>
           </h2>
+          <p className="text-neutral-400 text-lg font-light mb-10">
+            Join the waitlist. Be part of what&apos;s next.
+          </p>
           </BlurFade>
           <BlurFade inView delay={0.25} direction="up">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            <button className="bg-white text-black font-bold text-xs tracking-[0.2em] uppercase rounded-full px-12 py-5 hover:scale-105 active:scale-95 transition-all duration-300">
-              Subscribe Now
+          <form className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full p-1.5 flex items-center max-w-md mx-auto w-full group focus-within:ring-2 ring-white/40 transition-all">
+            <input
+              className="bg-transparent border-none focus:ring-0 text-white placeholder-white/50 px-6 w-full text-sm"
+              placeholder="Enter your email"
+              type="email"
+            />
+            <button
+              className="bg-white text-black font-bold text-[11px] tracking-widest uppercase rounded-full px-8 py-3 hover:scale-[1.03] active:scale-95 transition-all duration-300"
+              type="submit"
+            >
+              waitlist
             </button>
-            <button className="liquid-glass text-white font-bold text-xs tracking-[0.2em] uppercase rounded-full px-12 py-5 hover:scale-105 active:scale-95 transition-all duration-300">
-              Start Writing
-            </button>
-          </div>
+          </form>
           </BlurFade>
         </div>
       </section>
