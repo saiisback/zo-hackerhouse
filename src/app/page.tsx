@@ -65,31 +65,28 @@ export default function Home() {
             <div className="flex -space-x-3">
               <Image
                 className="w-8 h-8 rounded-full border border-black object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMimYLvea0PIV8kuhU4AhaqOopeKL5tFK7L62tDhtEjpqPHrHw-NHQ7aCnEPFalRf_nlBCmNPC4wyc-l118EBqUg6YHkxo_KT8siQv6LbbIyTsVBtARfvge9DplA8wn8FDO4DEQQO-C_7srfNdanblbFkVu4yWwhb-mVqIzH8NsOfOHA9vS8vScpb7-MkF55iqsg-afe1J3TYpNdeArAKlTX36ZMVx85hz5SaR2HWcq9Cig42ADH5LAad0wP5y0LpeISpUmIfKV4Y"
+                src="/pfp1.png"
                 alt="User avatar"
                 width={32}
                 height={32}
-                unoptimized
               />
               <Image
                 className="w-8 h-8 rounded-full border border-black object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdTrZU91vmSVxCXaqGjBrcX05KgjGfiNn7klGxpjW0NHYuAX4Qc0UnjZ1szaBEQl10OesvestnRUY-ycfR78NMvQmYu1mId8WYM93Py5RNBEurGPSAV1yElMo7SdetDkZp_yJHIgDGPKnN4x08r-RYOjaUGyD7Xqeha4Ra1JEZa30H0oYLvpoDwVhrGjOy9cIYRrb4e3XT4d3-ZhIYh8Rx7PtMXyUFSBzAnlfUl1jb59E1pu2LGaS5d-U3wY_xHkYkNh41xSi5lmg"
+                src="/pfp2.png"
                 alt="User avatar"
                 width={32}
                 height={32}
-                unoptimized
               />
               <Image
                 className="w-8 h-8 rounded-full border border-black object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5zE6rqwWiy0JsQLwnLWOaaBxUJvRXT4-et6E0qGiCMMqVvZzLnCicgjC0eUhg_Dv1-X9lV3MlJDW-q-rL74XUgRBPksfTO8nwPIDmle0-Qq29Rb88CcVHke_XxumFVba9d_ghhz-9RGABR-MaEv48w6VbfYs_SiarfcwXvURQm6pK6TtQ5oy9pdDLWytHNIMJ9agdiZ-iJFIcV_qC9Q4ITcFM6v1ygjGt7nFcl4xapC4SWmSWVkJ8awAI6-y8Y7Dv-iFpVx9FllQ"
+                src="/pfp3.png"
                 alt="User avatar"
                 width={32}
                 height={32}
-                unoptimized
               />
             </div>
             <span className="bg-white text-black text-xs font-bold tracking-widest uppercase px-3 py-1">
-              7,000+ people already waitlist
+              You&apos;re the {Math.floor(Math.random() * 3000 + 4200).toLocaleString()}th visitor
             </span>
           </div>
           <h1 className="text-5xl md:text-8xl font-medium tracking-tight mb-6 leading-[0.9]">
@@ -232,11 +229,11 @@ export default function Home() {
           ]}
           textClassName="text-3xl md:text-5xl font-medium leading-[1.3]"
           header={
-            <div className="w-48 h-48 md:w-64 md:h-64 mx-auto mb-10 rounded-full overflow-hidden border border-white/10 bg-white flex items-center justify-center">
+            <div className="w-48 h-48 md:w-64 md:h-64 mx-auto mb-10 flex items-center justify-center">
               <Image
-                src="/zo-logo.jpg"
-                className="w-3/4 h-3/4 object-contain"
-                alt="Zo House logo"
+                src="/globe.png"
+                className="w-full h-full object-contain"
+                alt="Globe"
                 width={384}
                 height={384}
               />
