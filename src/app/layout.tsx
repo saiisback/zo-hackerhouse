@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Instrument_Serif, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { AppWrapper } from "@/components/app-wrapper";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -37,7 +38,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-background text-on-background">{children}</body>
+      <body className="bg-background text-on-background">
+        <AppWrapper>{children}</AppWrapper>
+      </body>
     </html>
   );
 }

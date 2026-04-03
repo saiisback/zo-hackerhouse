@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { HyperText } from "@/components/ui/hyper-text";
+import { HorizontalScroll } from "@/components/horizontal-scroll";
 
 export default function Home() {
   return (
@@ -252,55 +253,52 @@ export default function Home() {
           </BlurFade>
         </div>
 
-        {/* Houses Horizontal Scroll */}
-        <BlurFade inView delay={0.3} direction="up">
-        <div className="mt-24 overflow-x-auto scrollbar-hide">
-          <div className="flex gap-6 px-8 md:px-[calc((100vw-64rem)/2)] w-max">
-            {/* Whitefield */}
-            <div className="relative w-[85vw] md:w-[42rem] h-[28rem] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
-              <Image
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
-                alt="Whitefield House"
-                fill
-                sizes="(max-width: 768px) 85vw, 42rem"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
-                <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 01</span>
-                <h3 className="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-3">Whitefield</h3>
-                <p className="text-white/60 text-base md:text-lg font-light leading-relaxed">
-                  3-storey villa. Pool. Studio. 20 beds.{" "}
-                  <span className="text-white font-[family-name:var(--font-headline)] italic">The compound.</span>
-                </p>
-              </div>
-            </div>
+      </section>
 
-            {/* Koramangala */}
-            <div className="relative w-[85vw] md:w-[42rem] h-[28rem] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
-              <Image
-                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80"
-                alt="Koramangala House"
-                fill
-                sizes="(max-width: 768px) 85vw, 42rem"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
-                <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 02</span>
-                <h3 className="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-3">Koramangala</h3>
-                <p className="text-white/60 text-base md:text-lg font-light leading-relaxed">
-                  13th-floor penthouse. City views. 14 beds.{" "}
-                  <span className="text-white font-[family-name:var(--font-headline)] italic">The stage.</span>
-                </p>
-              </div>
-            </div>
+      {/* Houses Horizontal Scroll */}
+      <HorizontalScroll>
+        {/* Whitefield */}
+        <div className="relative w-[85vw] md:w-[60vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
+          <Image
+            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
+            alt="Whitefield House"
+            fill
+            sizes="(max-width: 768px) 85vw, 60vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+            <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 01</span>
+            <h3 className="text-3xl md:text-5xl font-bold tracking-tight mt-2 mb-3">Whitefield</h3>
+            <p className="text-white/60 text-base md:text-lg font-light leading-relaxed">
+              3-storey villa. Pool. Studio. 20 beds.{" "}
+              <span className="text-white font-[family-name:var(--font-headline)] italic">The compound.</span>
+            </p>
           </div>
         </div>
-        </BlurFade>
-      </section>
+
+        {/* Koramangala */}
+        <div className="relative w-[85vw] md:w-[60vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
+          <Image
+            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80"
+            alt="Koramangala House"
+            fill
+            sizes="(max-width: 768px) 85vw, 60vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+            <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 02</span>
+            <h3 className="text-3xl md:text-5xl font-bold tracking-tight mt-2 mb-3">Koramangala</h3>
+            <p className="text-white/60 text-base md:text-lg font-light leading-relaxed">
+              13th-floor penthouse. City views. 14 beds.{" "}
+              <span className="text-white font-[family-name:var(--font-headline)] italic">The stage.</span>
+            </p>
+          </div>
+        </div>
+      </HorizontalScroll>
 
       {/* Solution Section */}
       <section className="section-padding px-8 md:px-28">
