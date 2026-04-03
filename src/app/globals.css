@@ -102,3 +102,13 @@ body {
 .word-reveal span {
   transition: opacity 0.4s ease;
 }
+
+::selection {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+::-moz-selection {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}

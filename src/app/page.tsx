@@ -81,7 +81,7 @@ export default function Home() {
                 unoptimized
               />
             </div>
-            <span className="text-neutral-400 text-xs font-bold tracking-widest uppercase">
+            <span className="bg-white text-black text-xs font-bold tracking-widest uppercase px-3 py-1">
               7,000+ people already waitlist
             </span>
           </div>
@@ -92,9 +92,6 @@ export default function Home() {
             </span>{" "}
             Is Recruiting
           </h1>
-          <p className="text-lg md:text-xl text-neutral-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-            20 beds. 2 tracks. 12 weeks to build something that matters..
-          </p>
           <form className="liquid-glass rounded-full p-1.5 flex items-center max-w-md mx-auto w-full group focus-within:ring-1 ring-white/20 transition-all">
             <input
               className="bg-transparent border-none focus:ring-0 text-white placeholder-neutral-500 px-6 w-full text-sm"
@@ -134,6 +131,7 @@ export default function Home() {
                   src="/dinner.png"
                   alt="Founder Dinners"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <h3 className="text-xl font-bold mb-4 uppercase tracking-tighter">
@@ -152,6 +150,7 @@ export default function Home() {
                   src="/demoday.png"
                   alt="Demo Days"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               <h3 className="text-xl font-bold mb-4 uppercase tracking-tighter">Demo Days</h3>
@@ -167,6 +166,8 @@ export default function Home() {
                   src="/mentor.png"
                   alt="Mentor Sessions"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  loading="eager"
                 />
               </div>
               <h3 className="text-xl font-bold mb-4 uppercase tracking-tighter">
