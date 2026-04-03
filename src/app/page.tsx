@@ -65,21 +65,21 @@ export default function Home() {
             <div className="flex -space-x-3">
               <Image
                 className="w-8 h-8 rounded-full border border-black object-cover"
-                src="/pfp1.png"
+                src="/pfp1.webp"
                 alt="User avatar"
                 width={32}
                 height={32}
               />
               <Image
                 className="w-8 h-8 rounded-full border border-black object-cover"
-                src="/pfp2.png"
+                src="/pfp2.webp"
                 alt="User avatar"
                 width={32}
                 height={32}
               />
               <Image
                 className="w-8 h-8 rounded-full border border-black object-cover"
-                src="/pfp3.png"
+                src="/pfp3.webp"
                 alt="User avatar"
                 width={32}
                 height={32}
@@ -151,7 +151,7 @@ export default function Home() {
               <div className="aspect-square bg-[#141414] rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative border border-white/5">
                 <Image
                   className="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700"
-                  src="/dinner.png"
+                  src="/dinner.webp"
                   alt="Founder Dinners"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -172,7 +172,7 @@ export default function Home() {
               <div className="aspect-square bg-[#141414] rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative border border-white/5">
                 <Image
                   className="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700"
-                  src="/demoday.png"
+                  src="/demoday.webp"
                   alt="Demo Days"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -190,7 +190,7 @@ export default function Home() {
               <div className="aspect-square bg-[#141414] rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative border border-white/5">
                 <Image
                   className="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700"
-                  src="/mentor.png"
+                  src="/mentor.webp"
                   alt="Mentor Sessions"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -231,7 +231,7 @@ export default function Home() {
           header={
             <div className="w-48 h-48 md:w-64 md:h-64 mx-auto mb-10 flex items-center justify-center">
               <Image
-                src="/globe.png"
+                src="/globe.webp"
                 className="w-full h-full object-contain"
                 alt="Globe"
                 width={384}
@@ -249,12 +249,11 @@ export default function Home() {
           <div className="flex flex-col gap-6">
             <div className="relative w-full h-[60vh] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer">
               <Image
-                src="/zo-blr.png"
+                src="/zo-blr.webp"
                 alt="Whitefield House"
                 fill
                 sizes="85vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
-                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8">
@@ -268,12 +267,11 @@ export default function Home() {
             </div>
             <div className="relative w-full h-[60vh] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer">
               <Image
-                src="/zo-krm.png"
+                src="/zo-krm.webp"
                 alt="Koramangala House"
                 fill
                 sizes="85vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
-                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8">
@@ -338,21 +336,21 @@ export default function Home() {
                 city: "Dubai",
                 tagline: "Pop-up Hacker House",
                 description: "Three-week builder sprint in the desert. High-signal founders, zero distractions.",
-                image: "/dubai.png",
+                image: "/dubai.webp",
                 flag: "🇦🇪",
               },
               {
                 city: "Singapore",
                 tagline: "Founder Activation",
                 description: "TOKEN2049 side event. 200+ founders. The room that launched three companies.",
-                image: "/singapore.png",
+                image: "/singapore.webp",
                 flag: "🇸🇬",
               },
               {
                 city: "San Francisco",
                 tagline: "Builder Residency",
                 description: "Two weeks in SOMA. Demo day with top-tier VCs. Six deals closed on-site.",
-                image: "/sf.png",
+                image: "/sf.webp",
                 flag: "🇺🇸",
               },
             ].map((card, i) => (
@@ -364,7 +362,6 @@ export default function Home() {
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
@@ -383,7 +380,7 @@ export default function Home() {
       <section className="relative min-h-[716px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/hero.png"
+            src="/hero.webp"
             alt="Background"
             fill
             className="object-cover opacity-50"

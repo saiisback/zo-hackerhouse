@@ -41,6 +41,15 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
     const interval = setInterval(update, 100);
 
+    // Safety timeout — never stay stuck longer than 8 seconds
+    const timeout = setTimeout(() => {
+      if (!finished.current) {
+        finished.current = true;
+        setProgress(100);
+        setTimeout(() => onCompleteRef.current(), 400);
+      }
+    }, 8000);
+
     const images = Array.from(document.images);
     const handlers: Array<() => void> = [];
     for (const img of images) {
@@ -52,6 +61,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
 
     return () => {
       clearInterval(interval);
+      clearTimeout(timeout);
       images.forEach((img, i) => {
         img.removeEventListener("load", handlers[i]);
         img.removeEventListener("error", handlers[i]);

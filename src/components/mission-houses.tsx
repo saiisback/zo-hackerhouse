@@ -25,12 +25,12 @@ export function MissionHouses() {
         >
           <div className="relative w-[60vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
             <Image
-              src="/zo-blr.png"
+              src="/zo-blr.webp"
               alt="Whitefield House"
               fill
               sizes="60vw"
               className="object-cover group-hover:scale-105 transition-transform duration-700"
-              unoptimized
+
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
@@ -44,12 +44,12 @@ export function MissionHouses() {
           </div>
           <div className="relative w-[60vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
             <Image
-              src="/zo-krm.png"
+              src="/zo-krm.webp"
               alt="Koramangala House"
               fill
               sizes="60vw"
               className="object-cover group-hover:scale-105 transition-transform duration-700"
-              unoptimized
+
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
