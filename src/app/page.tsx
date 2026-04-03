@@ -325,10 +325,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center w-full border-t border-white/5 pt-12">
           <div className="mb-8 md:mb-0 text-center md:text-left">
             <div className="flex items-center gap-3 mb-4 justify-center md:justify-start">
-              <span className="text-lg font-black text-white italic font-serif">Mindloop</span>
+              <span className="text-lg font-black text-white italic font-serif">Civilisation</span>
             </div>
             <p className="text-[10px] font-bold tracking-widest uppercase text-neutral-500">
-              &copy; 2024 Mindloop Archive. All rights reserved.
+              &copy; 2025 The Civilisation. All rights reserved.
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-8 md:gap-12">
