@@ -86,7 +86,7 @@ export default function Home() {
               />
             </div>
             <span className="bg-white text-black text-xs font-bold tracking-widest uppercase px-3 py-1">
-              You&apos;re the {Math.floor(Math.random() * 3000 + 4200).toLocaleString()}th visitor
+              You&apos;re the 4,857th visitor
             </span>
           </div>
           <h1 className="text-5xl md:text-8xl font-medium tracking-tight mb-6 leading-[0.9]">
