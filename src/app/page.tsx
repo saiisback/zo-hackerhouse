@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { HyperText } from "@/components/ui/hyper-text";
+import { WordReveal } from "@/components/ui/word-reveal";
 import { MissionHouses } from "@/components/mission-houses";
 
 export default function Home() {
@@ -234,24 +235,20 @@ export default function Home() {
             />
           </div>
           </BlurFade>
-          <BlurFade inView delay={0.25} direction="up">
-          <div className="word-reveal text-3xl font-medium leading-[1.3] text-left mb-12">
-            <p>
-              <span className="opacity-100 text-white">India&apos;s permanent </span>
-              <span className="opacity-100 text-white font-[family-name:var(--font-headline)] italic">
-                founder house
-              </span>{" "}
-              <span className="opacity-100 text-white">— where </span>
-              <span className="opacity-100 text-white font-[family-name:var(--font-headline)] italic">
-                builders
-              </span>{" "}
-              <span className="opacity-40">
-                live, collaborate, and compound. Two properties. 450+ events. 2,700+ founders. 12+
-                programs.
-              </span>
-            </p>
-          </div>
-          </BlurFade>
+          <WordReveal className="text-3xl font-medium leading-[1.3] text-left mb-12 text-white">
+            <span>India&apos;s permanent </span>
+            <span className="font-[family-name:var(--font-headline)] italic">
+              founder house
+            </span>
+            <span> — where </span>
+            <span className="font-[family-name:var(--font-headline)] italic">
+              builders
+            </span>
+            <span>
+              {" "}live, collaborate, and compound. Two properties. 450+ events. 2,700+ founders. 12+
+              programs.
+            </span>
+          </WordReveal>
           <div className="flex flex-col gap-6">
             <div className="relative w-full h-[60vh] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer">
               <Image

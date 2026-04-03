@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const WORDS = ["Imagine", "Build", "Ship"];
 const DURATION = 2700;
-const EASE = [0.4, 0, 0.2, 1];
+const EASE: [number, number, number, number] = [0.4, 0, 0.2, 1];
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [wordIndex, setWordIndex] = useState(0);

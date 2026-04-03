@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { BlurFade } from "@/components/ui/blur-fade";
+import { WordReveal } from "@/components/ui/word-reveal";
 
 export function MissionHouses() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,24 +39,24 @@ export function MissionHouses() {
               />
             </div>
           </BlurFade>
-          <BlurFade inView delay={0.25} direction="up">
-            <div className="word-reveal text-3xl md:text-5xl font-medium leading-[1.3] text-left max-w-4xl">
-              <p className="mb-8">
-                <span className="opacity-100 text-white">India&apos;s permanent </span>
-                <span className="opacity-100 text-white font-[family-name:var(--font-headline)] italic">
-                  founder house
-                </span>{" "}
-                <span className="opacity-100 text-white">— where </span>
-                <span className="opacity-100 text-white font-[family-name:var(--font-headline)] italic">
-                  builders
-                </span>{" "}
-                <span className="opacity-40">
-                  live, collaborate, and compound. Two properties. 450+ events. 2,700+ founders. 12+
-                  programs.
-                </span>
-              </p>
-            </div>
-          </BlurFade>
+          <WordReveal
+            className="text-3xl md:text-5xl font-medium leading-[1.3] text-left max-w-4xl mb-8 text-white"
+            progress={scrollYProgress}
+            progressRange={[0, 0.25]}
+          >
+            <span>India&apos;s permanent </span>
+            <span className="font-[family-name:var(--font-headline)] italic">
+              founder house
+            </span>
+            <span> — where </span>
+            <span className="font-[family-name:var(--font-headline)] italic">
+              builders
+            </span>
+            <span>
+              {" "}live, collaborate, and compound. Two properties. 450+ events. 2,700+ founders. 12+
+              programs.
+            </span>
+          </WordReveal>
         </motion.div>
 
         {/* Houses - scroll in from right */}
