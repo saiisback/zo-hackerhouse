@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { BlurFade } from "@/components/ui/blur-fade";
+import { HyperText } from "@/components/ui/hyper-text";
 
 export default function Home() {
   return (
@@ -53,6 +57,7 @@ export default function Home() {
           </video>
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent h-full"></div>
         </div>
+        <BlurFade inView delay={0.2} direction="up">
         <div className="relative z-10 text-center px-6 max-w-5xl pt-32">
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
             <div className="flex -space-x-3">
@@ -92,9 +97,9 @@ export default function Home() {
             </span>{" "}
             Is Recruiting
           </h1>
-          <form className="liquid-glass rounded-full p-1.5 flex items-center max-w-md mx-auto w-full group focus-within:ring-1 ring-white/20 transition-all">
+          <form className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full p-1.5 flex items-center max-w-md mx-auto w-full group focus-within:ring-2 ring-white/40 transition-all">
             <input
-              className="bg-transparent border-none focus:ring-0 text-white placeholder-neutral-500 px-6 w-full text-sm"
+              className="bg-transparent border-none focus:ring-0 text-white placeholder-white/50 px-6 w-full text-sm"
               placeholder="Enter your email"
               type="email"
             />
@@ -106,24 +111,43 @@ export default function Home() {
             </button>
           </form>
         </div>
+        </BlurFade>
       </section>
 
       {/* Hacker House Section */}
       <section className="section-padding px-8 md:px-28 relative lume-section">
         <div className="max-w-7xl mx-auto">
+          <BlurFade inView delay={0.1} direction="up">
           <h2 className="text-4xl md:text-6xl font-light mb-6 tracking-tight text-center md:text-left">
-            India&apos;s first permanent{" "}
-            <span className="font-[family-name:var(--font-headline)] italic font-normal">
+            <HyperText
+              as="span"
+              className="font-light tracking-tight"
+              startOnView
+              duration={1000}
+            >
+              {"India's first permanent "}
+            </HyperText>
+            <HyperText
+              as="span"
+              className="font-[family-name:var(--font-headline)] italic font-normal tracking-tight"
+              startOnView
+              duration={1000}
+              delay={400}
+            >
               hacker house.
-            </span>
+            </HyperText>
           </h2>
+          </BlurFade>
+          <BlurFade inView delay={0.2} direction="up">
           <p className="text-neutral-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-24">
             Founders live together in Bangalore. Monthly cohorts. Build alongside serious peers.
             Plug into curated programming, mentors, and investors. The house doesn&apos;t reset
             when a cohort ends — it compounds.
           </p>
+          </BlurFade>
           <div className="grid md:grid-cols-3 gap-12 md:gap-8">
             {/* Founder Dinners */}
+            <BlurFade inView delay={0.1} direction="up">
             <div className="flex flex-col group cursor-pointer">
               <div className="aspect-square bg-[#141414] rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative border border-white/5">
                 <Image
@@ -142,7 +166,9 @@ export default function Home() {
                 trajectories.
               </p>
             </div>
+            </BlurFade>
             {/* Demo Days */}
+            <BlurFade inView delay={0.25} direction="up">
             <div className="flex flex-col group cursor-pointer md:mt-12">
               <div className="aspect-square bg-[#141414] rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative border border-white/5">
                 <Image
@@ -158,7 +184,9 @@ export default function Home() {
                 Ship something. Show it. Peers, mentors, investors in the room. Every month.
               </p>
             </div>
+            </BlurFade>
             {/* Mentor Sessions */}
+            <BlurFade inView delay={0.4} direction="up">
             <div className="flex flex-col group cursor-pointer md:mt-24">
               <div className="aspect-square bg-[#141414] rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative border border-white/5">
                 <Image
@@ -178,18 +206,22 @@ export default function Home() {
                 investors who&apos;ve funded it.
               </p>
             </div>
+            </BlurFade>
           </div>
+          <BlurFade inView delay={0.2} direction="up">
           <div className="mt-32 border-t border-white/5 pt-12 text-center md:text-right">
             <p className="text-neutral-500 font-[family-name:var(--font-headline)] italic text-2xl">
               &ldquo;The house doesn&apos;t reset — it compounds.&rdquo;
             </p>
           </div>
+          </BlurFade>
         </div>
       </section>
 
       {/* Mission Section */}
       <section className="section-padding bg-surface-container-lowest overflow-hidden">
         <div className="max-w-4xl mx-auto px-8 text-center">
+          <BlurFade inView delay={0.1} direction="up">
           <div className="w-64 h-64 md:w-96 md:h-96 mx-auto mb-20 rounded-full overflow-hidden border border-white/10 bg-white flex items-center justify-center">
             <Image
               src="/zo-logo.jpg"
@@ -199,6 +231,8 @@ export default function Home() {
               height={384}
             />
           </div>
+          </BlurFade>
+          <BlurFade inView delay={0.25} direction="up">
           <div className="word-reveal text-3xl md:text-5xl font-medium leading-[1.3] text-left">
             <p className="mb-8">
               <span className="opacity-100 text-white">India&apos;s permanent </span>
@@ -215,75 +249,141 @@ export default function Home() {
               </span>
             </p>
           </div>
+          </BlurFade>
         </div>
+
+        {/* Houses Horizontal Scroll */}
+        <BlurFade inView delay={0.3} direction="up">
+        <div className="mt-24 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-6 px-8 md:px-[calc((100vw-64rem)/2)] w-max">
+            {/* Whitefield */}
+            <div className="relative w-[85vw] md:w-[42rem] h-[28rem] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
+              <Image
+                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
+                alt="Whitefield House"
+                fill
+                sizes="(max-width: 768px) 85vw, 42rem"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 01</span>
+                <h3 className="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-3">Whitefield</h3>
+                <p className="text-white/60 text-base md:text-lg font-light leading-relaxed">
+                  3-storey villa. Pool. Studio. 20 beds.{" "}
+                  <span className="text-white font-[family-name:var(--font-headline)] italic">The compound.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Koramangala */}
+            <div className="relative w-[85vw] md:w-[42rem] h-[28rem] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
+              <Image
+                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80"
+                alt="Koramangala House"
+                fill
+                sizes="(max-width: 768px) 85vw, 42rem"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                <span className="text-[10px] font-bold tracking-[0.3em] text-white/50 uppercase">Property 02</span>
+                <h3 className="text-3xl md:text-4xl font-bold tracking-tight mt-2 mb-3">Koramangala</h3>
+                <p className="text-white/60 text-base md:text-lg font-light leading-relaxed">
+                  13th-floor penthouse. City views. 14 beds.{" "}
+                  <span className="text-white font-[family-name:var(--font-headline)] italic">The stage.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        </BlurFade>
       </section>
 
       {/* Solution Section */}
       <section className="section-padding px-8 md:px-28">
         <div className="max-w-7xl mx-auto">
+          <BlurFade inView delay={0.1} direction="up">
           <div className="mb-20">
             <span className="text-[10px] font-bold tracking-[0.3em] text-neutral-500 uppercase">
               Track Record
             </span>
             <h2 className="text-4xl md:text-6xl font-light mt-4 tracking-tight">
-              We&apos;ve done this before.
+              <HyperText
+                as="span"
+                className="font-light tracking-tight"
+                startOnView
+                duration={800}
+              >
+                {"We've done this before."}
+              </HyperText>
               <br />
               <span className="font-[family-name:var(--font-headline)] italic font-normal">
                 Dubai. Singapore. San Francisco.
               </span>
               <br />
-              Now it&apos;s India&apos;s turn.
+              <HyperText
+                as="span"
+                className="font-light tracking-tight"
+                startOnView
+                duration={800}
+                delay={600}
+              >
+                {"Now it's India's turn."}
+              </HyperText>
             </h2>
             <p className="text-neutral-400 text-lg font-light leading-relaxed max-w-3xl mt-6">
               Zo has run pop-up hacker houses and founder activations across three continents. The
               Civilisation is what happens when you make it permanent.
             </p>
           </div>
-          <div className="w-full aspect-[21/9] md:aspect-[3/1] bg-surface-container-low rounded-2xl overflow-hidden mb-20 border border-white/5 shadow-2xl">
-            <video autoPlay className="w-full h-full object-cover" loop muted playsInline>
-              <source
-                src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260325_125119_8e5ae31c-0021-4396-bc08-f7aebeb877a2.mp4"
-                type="video/mp4"
-              />
-            </video>
+          </BlurFade>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+            {[
+              {
+                city: "Dubai",
+                tagline: "Pop-up Hacker House",
+                description: "Three-week builder sprint in the desert. High-signal founders, zero distractions.",
+                image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+                flag: "🇦🇪",
+              },
+              {
+                city: "Singapore",
+                tagline: "Founder Activation",
+                description: "TOKEN2049 side event. 200+ founders. The room that launched three companies.",
+                image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80",
+                flag: "🇸🇬",
+              },
+              {
+                city: "San Francisco",
+                tagline: "Builder Residency",
+                description: "Two weeks in SOMA. Demo day with top-tier VCs. Six deals closed on-site.",
+                image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80",
+                flag: "🇺🇸",
+              },
+            ].map((card, i) => (
+              <BlurFade key={card.city} inView delay={0.15 * (i + 1)} direction="up">
+              <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 cursor-pointer hover:border-white/20 transition-all duration-500">
+                <Image
+                  src={card.image}
+                  alt={card.city}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">{card.city}</h3>
+                  <p className="text-white/70 text-sm leading-relaxed">{card.description}</p>
+                </div>
+              </div>
+              </BlurFade>
+            ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div className="space-y-4">
-              <span className="material-symbols-outlined text-white/40">rocket_launch</span>
-              <h4 className="text-sm font-bold tracking-widest uppercase">
-                Superteam Residency
-              </h4>
-              <p className="text-neutral-500 text-sm leading-relaxed">
-                Highest revenue program — $19K+. Builders shipping real products in a live-in
-                sprint.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <span className="material-symbols-outlined text-white/40">currency_bitcoin</span>
-              <h4 className="text-sm font-bold tracking-widest uppercase">Coinbase House</h4>
-              <p className="text-neutral-500 text-sm leading-relaxed">
-                India Blockchain Week. 400 attendees. The activation that set the bar.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <span className="material-symbols-outlined text-white/40">construction</span>
-              <h4 className="text-sm font-bold tracking-widest uppercase">
-                Garage BLR by Stellar
-              </h4>
-              <p className="text-neutral-500 text-sm leading-relaxed">
-                21-day builder residency. Deep work. Real output. No distractions.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <span className="material-symbols-outlined text-white/40">group_add</span>
-              <h4 className="text-sm font-bold tracking-widest uppercase">
-                The Residency Cohorts
-              </h4>
-              <p className="text-neutral-500 text-sm leading-relaxed">
-                1,300+ applications. Monthly cohorts of founders building under one roof.
-              </p>
-            </div>
-          </div>
+         
         </div>
       </section>
 
@@ -299,16 +399,32 @@ export default function Home() {
           <div className="absolute inset-0 bg-background/60 backdrop-blur-sm"></div>
         </div>
         <div className="relative z-10 text-center px-6">
+          <BlurFade inView delay={0.1} direction="up">
           <div className="relative w-12 h-12 mx-auto mb-10 flex items-center justify-center">
             <div className="absolute inset-0 border-2 border-white/40 rounded-full"></div>
             <div className="border border-white/60 rounded-full w-4 h-4"></div>
           </div>
           <h2 className="text-5xl md:text-7xl font-medium tracking-tight mb-12">
-            Start Your{" "}
-            <span className="font-[family-name:var(--font-headline)] italic font-normal">
+            <HyperText
+              as="span"
+              className="font-medium tracking-tight"
+              startOnView
+              duration={800}
+            >
+              {"Start Your "}
+            </HyperText>
+            <HyperText
+              as="span"
+              className="font-[family-name:var(--font-headline)] italic font-normal tracking-tight"
+              startOnView
+              duration={800}
+              delay={300}
+            >
               Journey
-            </span>
+            </HyperText>
           </h2>
+          </BlurFade>
+          <BlurFade inView delay={0.25} direction="up">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <button className="bg-white text-black font-bold text-xs tracking-[0.2em] uppercase rounded-full px-12 py-5 hover:scale-105 active:scale-95 transition-all duration-300">
               Subscribe Now
@@ -317,6 +433,7 @@ export default function Home() {
               Start Writing
             </button>
           </div>
+          </BlurFade>
         </div>
       </section>
 
