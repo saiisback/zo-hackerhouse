@@ -10,40 +10,66 @@ import { motion, MotionValue, useScroll, useTransform } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
-export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
-  children: string
+/** A styled segment: text with an optional className applied to each word */
+export interface StyledSegment {
+  text: string
+  className?: string
 }
 
-export const TextReveal: FC<TextRevealProps> = ({ children, className }) => {
+export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
+  /** Plain string (used when segments is not provided) */
+  children?: string
+  /** Optional styled segments — if provided, takes precedence over children */
+  segments?: StyledSegment[]
+  /** Class applied to the text wrapper */
+  textClassName?: string
+  /** Optional content rendered above the text in the sticky container */
+  header?: ReactNode
+}
+
+export const TextReveal: FC<TextRevealProps> = ({ children, segments, className, textClassName, header }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
   })
 
-  if (typeof children !== "string") {
-    throw new Error("TextReveal: children must be a string")
-  }
+  // Build word list with optional per-word styling
+  const styledWords: { word: string; className?: string }[] = []
 
-  const words = children.split(" ")
+  if (segments) {
+    for (const seg of segments) {
+      const words = seg.text.split(" ").filter(Boolean)
+      for (const w of words) {
+        styledWords.push({ word: w, className: seg.className })
+      }
+    }
+  } else if (children) {
+    const words = children.split(" ")
+    for (const w of words) {
+      styledWords.push({ word: w })
+    }
+  }
 
   return (
     <div ref={sectionRef} className={cn("relative z-0 h-[200vh]", className)}>
       <div
         className={
-          "sticky top-0 mx-auto flex h-[50%] max-w-4xl items-center bg-transparent px-4 py-20"
+          "sticky top-0 mx-auto flex flex-col h-[50%] max-w-4xl justify-center bg-transparent px-4 py-20"
         }
       >
+        {header}
         <span
-          className={
-            "flex flex-wrap p-5 text-2xl font-bold text-black/20 md:p-8 md:text-3xl lg:p-10 lg:text-4xl xl:text-5xl dark:text-white/20"
-          }
+          className={cn(
+            "flex flex-wrap p-5 text-2xl font-bold md:p-8 md:text-3xl lg:p-10 lg:text-4xl xl:text-5xl",
+            textClassName,
+          )}
         >
-          {words.map((word, i) => {
-            const start = i / words.length
-            const end = start + 1 / words.length
+          {styledWords.map((sw, i) => {
+            const start = i / styledWords.length
+            const end = start + 1 / styledWords.length
             return (
-              <Word key={i} progress={scrollYProgress} range={[start, end]}>
-                {word}
+              <Word key={i} progress={scrollYProgress} range={[start, end]} className={sw.className}>
+                {sw.word}
               </Word>
             )
           })}
@@ -57,19 +83,21 @@ interface WordProps {
   children: ReactNode
   progress: MotionValue<number>
   range: [number, number]
+  className?: string
 }
 
-const Word: FC<WordProps> = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0, 1])
+const Word: FC<WordProps> = ({ children, progress, range, className }) => {
+  const color = useTransform(
+    progress,
+    range,
+    ["rgb(100, 100, 100)", "rgb(255, 255, 255)"]
+  )
   return (
-    <span className="xl:lg-3 relative mx-1 lg:mx-1.5">
-      <span className="absolute opacity-30">{children}</span>
-      <motion.span
-        style={{ opacity: opacity }}
-        className={"text-black dark:text-white"}
-      >
-        {children}
-      </motion.span>
-    </span>
+    <motion.span
+      style={{ color }}
+      className={cn("xl:lg-3 mx-1 lg:mx-1.5", className)}
+    >
+      {children}
+    </motion.span>
   )
 }

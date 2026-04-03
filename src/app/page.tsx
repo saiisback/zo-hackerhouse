@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { HyperText } from "@/components/ui/hyper-text";
-import { WordReveal } from "@/components/ui/word-reveal";
+import { TextReveal } from "@/components/ui/text-reveal";
 import { MissionHouses } from "@/components/mission-houses";
 
 export default function Home() {
@@ -220,39 +220,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mission + Houses Section */}
+      {/* Mission Text Reveal Section */}
+      <section className="relative bg-surface-container-lowest">
+        <TextReveal
+          segments={[
+            { text: "India's permanent" },
+            { text: "founder house", className: "font-[family-name:var(--font-headline)] italic" },
+            { text: "— where" },
+            { text: "builders", className: "font-[family-name:var(--font-headline)] italic" },
+            { text: "live, collaborate, and compound. Two properties. 450+ events. 2,700+ founders. 12+ programs." },
+          ]}
+          textClassName="text-3xl md:text-5xl font-medium leading-[1.3]"
+          header={
+            <div className="w-48 h-48 md:w-64 md:h-64 mx-auto mb-10 rounded-full overflow-hidden border border-white/10 bg-white flex items-center justify-center">
+              <Image
+                src="/zo-logo.jpg"
+                className="w-3/4 h-3/4 object-contain"
+                alt="Zo House logo"
+                width={384}
+                height={384}
+              />
+            </div>
+          }
+        />
+      </section>
+
+      {/* Houses Section */}
       <section className="relative bg-surface-container-lowest">
         {/* Mobile: stacked layout */}
         <div className="md:hidden section-padding px-8">
-          <BlurFade inView delay={0.1} direction="up">
-          <div className="w-64 h-64 mx-auto mb-12 rounded-full overflow-hidden border border-white/10 bg-white flex items-center justify-center">
-            <Image
-              src="/zo-logo.jpg"
-              className="w-3/4 h-3/4 object-contain"
-              alt="Zo House logo"
-              width={384}
-              height={384}
-            />
-          </div>
-          </BlurFade>
-          <WordReveal className="text-3xl font-medium leading-[1.3] text-left mb-12 text-white">
-            <span>India&apos;s permanent </span>
-            <span className="font-[family-name:var(--font-headline)] italic">
-              founder house
-            </span>
-            <span> — where </span>
-            <span className="font-[family-name:var(--font-headline)] italic">
-              builders
-            </span>
-            <span>
-              {" "}live, collaborate, and compound. Two properties. 450+ events. 2,700+ founders. 12+
-              programs.
-            </span>
-          </WordReveal>
           <div className="flex flex-col gap-6">
             <div className="relative w-full h-[60vh] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer">
               <Image
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
+                src="/zo-blr.png"
                 alt="Whitefield House"
                 fill
                 sizes="85vw"
@@ -271,7 +271,7 @@ export default function Home() {
             </div>
             <div className="relative w-full h-[60vh] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer">
               <Image
-                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80"
+                src="/zo-krm.png"
                 alt="Koramangala House"
                 fill
                 sizes="85vw"
@@ -291,7 +291,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Desktop: mission left sticky + houses scroll right */}
+        {/* Desktop: houses scroll horizontally */}
         <div className="hidden md:block">
           <MissionHouses />
         </div>
@@ -341,21 +341,21 @@ export default function Home() {
                 city: "Dubai",
                 tagline: "Pop-up Hacker House",
                 description: "Three-week builder sprint in the desert. High-signal founders, zero distractions.",
-                image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
+                image: "/dubai.png",
                 flag: "🇦🇪",
               },
               {
                 city: "Singapore",
                 tagline: "Founder Activation",
                 description: "TOKEN2049 side event. 200+ founders. The room that launched three companies.",
-                image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80",
+                image: "/singapore.png",
                 flag: "🇸🇬",
               },
               {
                 city: "San Francisco",
                 tagline: "Builder Residency",
                 description: "Two weeks in SOMA. Demo day with top-tier VCs. Six deals closed on-site.",
-                image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80",
+                image: "/sf.png",
                 flag: "🇺🇸",
               },
             ].map((card, i) => (

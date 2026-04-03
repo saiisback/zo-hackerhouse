@@ -3,8 +3,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { BlurFade } from "@/components/ui/blur-fade";
-import { WordReveal } from "@/components/ui/word-reveal";
 
 export function MissionHouses() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,59 +12,20 @@ export function MissionHouses() {
     offset: ["start start", "end end"],
   });
 
-  // Houses start off-screen right and scroll left until the last card is fully visible
+  // Houses scroll from off-screen right to left
   const x = useTransform(scrollYProgress, [0, 1], ["100vw", "-65vw"]);
-  // Mission content fades/slides left as houses come in
-  const missionX = useTransform(scrollYProgress, [0, 1], ["0%", "-120%"]);
-  const missionOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [1, 1, 0]);
 
   return (
-    <div ref={containerRef} className="relative h-[300vh]">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Mission content - full width centered, slides away */}
-        <motion.div
-          style={{ x: missionX, opacity: missionOpacity }}
-          className="absolute inset-0 flex flex-col items-center justify-center px-8"
-        >
-          <BlurFade inView delay={0.1} direction="up">
-            <div className="w-64 h-64 md:w-96 md:h-96 mx-auto mb-20 rounded-full overflow-hidden border border-white/10 bg-white flex items-center justify-center">
-              <Image
-                src="/zo-logo.jpg"
-                className="w-3/4 h-3/4 object-contain"
-                alt="Zo House logo"
-                width={384}
-                height={384}
-              />
-            </div>
-          </BlurFade>
-          <WordReveal
-            className="text-3xl md:text-5xl font-medium leading-[1.3] text-left max-w-4xl mb-8 text-white"
-            progress={scrollYProgress}
-            progressRange={[0, 0.25]}
-          >
-            <span>India&apos;s permanent </span>
-            <span className="font-[family-name:var(--font-headline)] italic">
-              founder house
-            </span>
-            <span> — where </span>
-            <span className="font-[family-name:var(--font-headline)] italic">
-              builders
-            </span>
-            <span>
-              {" "}live, collaborate, and compound. Two properties. 450+ events. 2,700+ founders. 12+
-              programs.
-            </span>
-          </WordReveal>
-        </motion.div>
-
+    <div ref={containerRef} className="relative h-[200vh]">
+      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         {/* Houses - scroll in from right */}
         <motion.div
           style={{ x }}
-          className="absolute inset-0 flex items-center gap-6 pl-8 md:pl-16"
+          className="flex items-center gap-6 pl-8 md:pl-16"
         >
           <div className="relative w-[60vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
             <Image
-              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
+              src="/zo-blr.png"
               alt="Whitefield House"
               fill
               sizes="60vw"
@@ -85,7 +44,7 @@ export function MissionHouses() {
           </div>
           <div className="relative w-[60vw] h-[70vh] rounded-2xl overflow-hidden border border-white/10 flex-shrink-0 group cursor-pointer">
             <Image
-              src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80"
+              src="/zo-krm.png"
               alt="Koramangala House"
               fill
               sizes="60vw"
