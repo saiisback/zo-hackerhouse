@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WORDS = ["Imagine", "Build", "Ship"];
@@ -8,64 +8,80 @@ const EASE: [number, number, number, number] = [0.4, 0, 0.2, 1];
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [wordIndex, setWordIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
+  const [displayProgress, setDisplayProgress] = useState(0);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
   const finished = useRef(false);
 
   // Word cycling based on progress thresholds
   useEffect(() => {
-    if (progress > 66) setWordIndex(2);
-    else if (progress > 33) setWordIndex(1);
-  }, [progress]);
+    if (displayProgress > 66) setWordIndex(2);
+    else if (displayProgress > 33) setWordIndex(1);
+  }, [displayProgress]);
 
-  // Track image loading progress
   useEffect(() => {
-    const update = () => {
-      const images = Array.from(document.images);
-      if (images.length === 0) {
-        setProgress(100);
-        return;
-      }
-      const loaded = images.filter((img) => img.complete).length;
-      const p = Math.round((loaded / images.length) * 100);
-      setProgress(p);
+    let imagesReady = false;
+    let current = 0;
+    const startTime = Date.now();
+    const MIN_DURATION = 2000; // minimum 2s loading screen
 
-      if (p >= 100 && !finished.current) {
-        finished.current = true;
-        setTimeout(() => onCompleteRef.current(), 400);
-      }
+    const checkImages = () => {
+      const images = Array.from(document.images);
+      if (images.length === 0) return true;
+      return images.every((img) => img.complete);
     };
 
-    update();
+    const tick = () => {
+      if (finished.current) return;
 
-    const interval = setInterval(update, 100);
+      imagesReady = checkImages();
+      const elapsed = Date.now() - startTime;
 
-    // Safety timeout — never stay stuck longer than 8 seconds
-    const timeout = setTimeout(() => {
-      if (!finished.current) {
+      if (imagesReady && elapsed >= MIN_DURATION) {
+        // All images loaded and minimum time passed — finish
+        current = 100;
+        setDisplayProgress(100);
         finished.current = true;
-        setProgress(100);
         setTimeout(() => onCompleteRef.current(), 400);
+        return;
       }
-    }, 8000);
 
+      if (elapsed > 10000) {
+        // Safety timeout — force complete after 10s
+        current = 100;
+        setDisplayProgress(100);
+        finished.current = true;
+        setTimeout(() => onCompleteRef.current(), 400);
+        return;
+      }
+
+      // Smooth fake progress that climbs asymptotically toward 90
+      // Fast at first, then slows down — feels natural
+      const target = imagesReady ? 95 : Math.min(90, (elapsed / 80) ** 0.7 * 5);
+      current += (target - current) * 0.08;
+      setDisplayProgress(Math.round(current));
+
+      requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+
+    // Also listen for image load events to detect completion faster
     const images = Array.from(document.images);
-    const handlers: Array<() => void> = [];
+    const handler = () => {
+      imagesReady = checkImages();
+    };
     for (const img of images) {
-      const handler = () => update();
       img.addEventListener("load", handler);
       img.addEventListener("error", handler);
-      handlers.push(handler);
     }
 
     return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-      images.forEach((img, i) => {
-        img.removeEventListener("load", handlers[i]);
-        img.removeEventListener("error", handlers[i]);
-      });
+      finished.current = true;
+      for (const img of images) {
+        img.removeEventListener("load", handler);
+        img.removeEventListener("error", handler);
+      }
     };
   }, []);
 
@@ -119,7 +135,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
           className="text-6xl md:text-8xl lg:text-9xl font-[family-name:var(--font-headline)] tabular-nums"
           style={{ color: "#f5f5f5" }}
         >
-          {Math.round(progress).toString().padStart(3, "0")}
+          {displayProgress.toString().padStart(3, "0")}
         </span>
       </motion.div>
 
@@ -133,7 +149,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               boxShadow: "0 0 8px rgba(255, 255, 255, 0.25)",
             }}
             initial={{ scaleX: 0 }}
-            animate={{ scaleX: progress / 100 }}
+            animate={{ scaleX: displayProgress / 100 }}
             transition={{ duration: 0.1, ease: "linear" }}
           />
         </div>
