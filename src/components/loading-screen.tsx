@@ -4,7 +4,6 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WORDS = ["Imagine", "Build", "Ship"];
-const DURATION = 2700;
 const EASE: [number, number, number, number] = [0.4, 0, 0.2, 1];
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
@@ -12,42 +11,52 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
+  const finished = useRef(false);
 
-  // Word cycling: every 900ms, stop at last word
+  // Word cycling based on progress thresholds
   useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => {
-        if (prev >= WORDS.length - 1) {
-          clearInterval(interval);
-          return prev;
-        }
-        return prev + 1;
-      });
-    }, 900);
-    return () => clearInterval(interval);
-  }, []);
+    if (progress > 66) setWordIndex(2);
+    else if (progress > 33) setWordIndex(1);
+  }, [progress]);
 
-  // Progress counter via rAF
+  // Track image loading progress
   useEffect(() => {
-    const start = performance.now();
-    let raf: number;
-    let done = false;
-
-    const tick = (now: number) => {
-      const elapsed = now - start;
-      const p = Math.min((elapsed / DURATION) * 100, 100);
-      setProgress(p);
-
-      if (p >= 100 && !done) {
-        done = true;
-        setTimeout(() => onCompleteRef.current(), 400);
+    const update = () => {
+      const images = Array.from(document.images);
+      if (images.length === 0) {
+        setProgress(100);
         return;
       }
-      raf = requestAnimationFrame(tick);
+      const loaded = images.filter((img) => img.complete).length;
+      const p = Math.round((loaded / images.length) * 100);
+      setProgress(p);
+
+      if (p >= 100 && !finished.current) {
+        finished.current = true;
+        setTimeout(() => onCompleteRef.current(), 400);
+      }
     };
 
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    update();
+
+    const interval = setInterval(update, 100);
+
+    const images = Array.from(document.images);
+    const handlers: Array<() => void> = [];
+    for (const img of images) {
+      const handler = () => update();
+      img.addEventListener("load", handler);
+      img.addEventListener("error", handler);
+      handlers.push(handler);
+    }
+
+    return () => {
+      clearInterval(interval);
+      images.forEach((img, i) => {
+        img.removeEventListener("load", handlers[i]);
+        img.removeEventListener("error", handlers[i]);
+      });
+    };
   }, []);
 
   return (
