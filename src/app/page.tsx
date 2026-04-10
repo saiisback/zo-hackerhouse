@@ -5,6 +5,12 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { HyperText } from "@/components/ui/hyper-text";
 import { TextReveal } from "@/components/ui/text-reveal";
 import { MissionHouses } from "@/components/mission-houses";
+import { AsciiEffect } from "@/components/ascii-effect";
+import { AsciiImageOverlay } from "@/components/ascii-image-overlay";
+import { GoldenAsciiBackground } from "@/components/golden-ascii-background";
+import { PretextParagraph } from "@/components/ui/pretext-paragraph";
+import { TrackRecordScroll } from "@/components/track-record-scroll";
+import { ProgramAccordion } from "@/components/program-accordion";
 
 export default function Home() {
   return (
@@ -48,16 +54,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            className="w-full h-full object-cover opacity-60"
-            loop
-            muted
-            playsInline
-          >
-            <source src="/hero-video.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent h-full"></div>
+          <Image
+            src="/hero.svg"
+            alt="Hero background"
+            fill
+            className="object-cover opacity-50"
+            sizes="100vw"
+          />
         </div>
         <BlurFade inView delay={0.2} direction="up">
         <div className="relative z-10 text-center px-6 max-w-5xl pt-32">
@@ -89,9 +92,9 @@ export default function Home() {
               You&apos;re the 4,857th visitor
             </span>
           </div>
-          <h1 className="text-5xl md:text-8xl font-medium tracking-tight mb-6 leading-[0.9]">
+          <h1 className="text-5xl md:text-8xl font-medium tracking-tight mb-6 leading-[0.9] text-center hero-text-shadow">
             The{" "}
-            <span className="font-[family-name:var(--font-headline)] italic font-normal">
+            <span className="font-[family-name:var(--font-headline)] italic font-normal shiny-gold">
               Civilisation
             </span>{" "}
             Is Recruiting
@@ -113,103 +116,14 @@ export default function Home() {
         </BlurFade>
       </section>
 
-      {/* Hacker House Section */}
-      <section className="section-padding px-8 md:px-28 relative lume-section">
+      {/* Hacker House Section - sticky scroll with accordion */}
+      <ProgramAccordion />
+
+      <section className="section-padding px-8 md:px-28">
         <div className="max-w-7xl mx-auto">
-          <BlurFade inView delay={0.1} direction="up">
-          <h2 className="text-4xl md:text-6xl font-light mb-6 tracking-tight text-center md:text-left">
-            <HyperText
-              as="span"
-              className="font-light tracking-tight"
-              startOnView
-              duration={1000}
-            >
-              {"India's first permanent "}
-            </HyperText>
-            <HyperText
-              as="span"
-              className="font-[family-name:var(--font-headline)] italic font-normal tracking-tight"
-              startOnView
-              duration={1000}
-              delay={400}
-            >
-              hacker house.
-            </HyperText>
-          </h2>
-          </BlurFade>
           <BlurFade inView delay={0.2} direction="up">
-          <p className="text-neutral-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-24">
-            Founders live together in Bangalore. Monthly cohorts. Build alongside serious peers.
-            Plug into curated programming, mentors, and investors. The house doesn&apos;t reset
-            when a cohort ends — it compounds.
-          </p>
-          </BlurFade>
-          <div className="grid md:grid-cols-3 gap-12 md:gap-8">
-            {/* Founder Dinners */}
-            <BlurFade inView delay={0.1} direction="up">
-            <div className="flex flex-col group cursor-pointer">
-              <div className="aspect-square bg-[#141414] rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative border border-white/5">
-                <Image
-                  className="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700"
-                  src="/dinner.webp"
-                  alt="Founder Dinners"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-4 uppercase tracking-tighter">
-                Founder Dinners
-              </h3>
-              <p className="text-neutral-500 leading-relaxed text-sm">
-                Monthly. Curated guests. Chef-prepared. No agenda. The conversations that change
-                trajectories.
-              </p>
-            </div>
-            </BlurFade>
-            {/* Demo Days */}
-            <BlurFade inView delay={0.25} direction="up">
-            <div className="flex flex-col group cursor-pointer md:mt-12">
-              <div className="aspect-square bg-[#141414] rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative border border-white/5">
-                <Image
-                  className="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700"
-                  src="/demoday.webp"
-                  alt="Demo Days"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-4 uppercase tracking-tighter">Demo Days</h3>
-              <p className="text-neutral-500 leading-relaxed text-sm">
-                Ship something. Show it. Peers, mentors, investors in the room. Every month.
-              </p>
-            </div>
-            </BlurFade>
-            {/* Mentor Sessions */}
-            <BlurFade inView delay={0.4} direction="up">
-            <div className="flex flex-col group cursor-pointer md:mt-24">
-              <div className="aspect-square bg-[#141414] rounded-2xl flex items-center justify-center mb-8 overflow-hidden relative border border-white/5">
-                <Image
-                  className="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700"
-                  src="/mentor.webp"
-                  alt="Mentor Sessions"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  loading="eager"
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-4 uppercase tracking-tighter">
-                Mentor Sessions
-              </h3>
-              <p className="text-neutral-500 leading-relaxed text-sm">
-                Weekly access to founders who&apos;ve built it, operators who&apos;ve scaled it,
-                investors who&apos;ve funded it.
-              </p>
-            </div>
-            </BlurFade>
-          </div>
-          <BlurFade inView delay={0.2} direction="up">
-          <div className="mt-32 border-t border-white/5 pt-12 text-center md:text-right">
-            <p className="text-neutral-500 font-[family-name:var(--font-headline)] italic text-2xl">
+          <div className="border-t border-white/5 pt-12 text-center md:text-right">
+            <p className="shiny-gold font-[family-name:var(--font-headline)] italic text-2xl opacity-60">
               &ldquo;The house doesn&apos;t reset — it compounds.&rdquo;
             </p>
           </div>
@@ -222,9 +136,9 @@ export default function Home() {
         <TextReveal
           segments={[
             { text: "India's permanent" },
-            { text: "founder house", className: "font-[family-name:var(--font-headline)] italic" },
+            { text: "founder house", className: "font-[family-name:var(--font-headline)] italic shiny-gold" },
             { text: "— where" },
-            { text: "builders", className: "font-[family-name:var(--font-headline)] italic" },
+            { text: "builders", className: "font-[family-name:var(--font-headline)] italic shiny-gold" },
             { text: "live, collaborate, and compound. Two properties. 450+ events. 2,700+ founders. 12+ programs." },
           ]}
           textClassName="text-3xl md:text-5xl font-medium leading-[1.3]"
@@ -261,7 +175,7 @@ export default function Home() {
                 <h3 className="text-3xl font-bold tracking-tight mt-2 mb-3">Whitefield</h3>
                 <p className="text-white/60 text-base font-light leading-relaxed">
                   3-storey villa. Pool. Studio. 20 beds.{" "}
-                  <span className="text-white font-[family-name:var(--font-headline)] italic">The compound.</span>
+                  <span className="shiny-gold font-[family-name:var(--font-headline)] italic">The compound.</span>
                 </p>
               </div>
             </div>
@@ -279,7 +193,7 @@ export default function Home() {
                 <h3 className="text-3xl font-bold tracking-tight mt-2 mb-3">Koramangala</h3>
                 <p className="text-white/60 text-base font-light leading-relaxed">
                   13th-floor penthouse. City views. 14 beds.{" "}
-                  <span className="text-white font-[family-name:var(--font-headline)] italic">The stage.</span>
+                  <span className="shiny-gold font-[family-name:var(--font-headline)] italic">The stage.</span>
                 </p>
               </div>
             </div>
@@ -292,95 +206,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Solution Section */}
-      <section className="section-padding px-8 md:px-28">
-        <div className="max-w-7xl mx-auto">
-          <BlurFade inView delay={0.1} direction="up">
-          <div className="mb-20">
-            <span className="text-[10px] font-bold tracking-[0.3em] text-neutral-500 uppercase">
-              Track Record
-            </span>
-            <h2 className="text-4xl md:text-6xl font-light mt-4 tracking-tight">
-              <HyperText
-                as="span"
-                className="font-light tracking-tight"
-                startOnView
-                duration={800}
-              >
-                {"We've done this before."}
-              </HyperText>
-              <br />
-              <span className="font-[family-name:var(--font-headline)] italic font-normal">
-                Dubai. Singapore. San Francisco.
-              </span>
-              <br />
-              <HyperText
-                as="span"
-                className="font-light tracking-tight"
-                startOnView
-                duration={800}
-                delay={600}
-              >
-                {"Now it's India's turn."}
-              </HyperText>
-            </h2>
-            <p className="text-neutral-400 text-lg font-light leading-relaxed max-w-3xl mt-6">
-              Zo has run pop-up hacker houses and founder activations across three continents. The
-              Civilisation is what happens when you make it permanent.
-            </p>
-          </div>
-          </BlurFade>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-            {[
-              {
-                city: "Dubai",
-                tagline: "Pop-up Hacker House",
-                description: "Three-week builder sprint in the desert. High-signal founders, zero distractions.",
-                image: "/dubai.webp",
-                flag: "🇦🇪",
-              },
-              {
-                city: "Singapore",
-                tagline: "Founder Activation",
-                description: "TOKEN2049 side event. 200+ founders. The room that launched three companies.",
-                image: "/singapore.webp",
-                flag: "🇸🇬",
-              },
-              {
-                city: "San Francisco",
-                tagline: "Builder Residency",
-                description: "Two weeks in SOMA. Demo day with top-tier VCs. Six deals closed on-site.",
-                image: "/sf.webp",
-                flag: "🇺🇸",
-              },
-            ].map((card, i) => (
-              <BlurFade key={card.city} inView delay={0.15 * (i + 1)} direction="up">
-              <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 cursor-pointer hover:border-white/20 transition-all duration-500">
-                <Image
-                  src={card.image}
-                  alt={card.city}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">{card.city}</h3>
-                  <p className="text-white/70 text-sm leading-relaxed">{card.description}</p>
-                </div>
-              </div>
-              </BlurFade>
-            ))}
-          </div>
-         
-        </div>
-      </section>
+      {/* Track Record - Scroll Section */}
+      <TrackRecordScroll />
 
       {/* CTA Section */}
       <section className="relative min-h-[716px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/hero.webp"
+            src="/hero.svg"
             alt="Background"
             fill
             className="object-cover opacity-50"
@@ -401,7 +234,7 @@ export default function Home() {
             </HyperText>
             <HyperText
               as="span"
-              className="font-[family-name:var(--font-headline)] italic font-normal tracking-tight"
+              className="font-[family-name:var(--font-headline)] italic font-normal tracking-tight shiny-gold"
               startOnView
               duration={800}
               delay={300}
@@ -418,9 +251,13 @@ export default function Home() {
               {" Is Waiting"}
             </HyperText>
           </h2>
-          <p className="text-neutral-400 text-lg font-light mb-10">
-            Join the waitlist. Be part of what&apos;s next.
-          </p>
+          <PretextParagraph
+            className="text-neutral-400 text-lg font-light mb-10"
+            font="300 18px Inter, sans-serif"
+            lineHeight={28}
+          >
+            {"Join the waitlist. Be part of what\u2019s next."}
+          </PretextParagraph>
           </BlurFade>
           <BlurFade inView delay={0.25} direction="up">
           <form className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full p-1.5 flex items-center max-w-md mx-auto w-full group focus-within:ring-2 ring-white/40 transition-all">

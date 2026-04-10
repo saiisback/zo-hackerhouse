@@ -152,6 +152,11 @@ body {
   display: none;
 }
 
+.shiny-gold {
+  color: #d4af37 !important;
+  -webkit-text-fill-color: #d4af37 !important;
+}
+
 ::selection {
   background-color: #ffffff !important;
   color: #000000 !important;
