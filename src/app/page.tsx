@@ -11,6 +11,7 @@ import { GoldenAsciiBackground } from "@/components/golden-ascii-background";
 import { PretextParagraph } from "@/components/ui/pretext-paragraph";
 import { TrackRecordScroll } from "@/components/track-record-scroll";
 import { ProgramAccordion } from "@/components/program-accordion";
+import { Village } from "@/components/village";
 
 export default function Home() {
   return (
@@ -130,6 +131,9 @@ export default function Home() {
           </BlurFade>
         </div>
       </section>
+
+      {/* The Village Section */}
+      <Village />
 
       {/* Mission Text Reveal Section */}
       <section className="relative bg-surface-container-lowest">
